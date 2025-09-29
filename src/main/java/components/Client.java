@@ -9,14 +9,7 @@ public class Client {
     private final int clientNumber;
     private static int assignmentNumber = 0;
 
-    public Client (String lastName, String firstName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        assignmentNumber++;
-        this.clientNumber = assignmentNumber;
-    }
-
-//2.2 XML file of account
+// Modifié pour 2.2 XML file of account
 
     public Client(String lastName, String firstName, int clientNumber) {
         this.lastName = lastName;

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Hashtable;
 import java.util.Map;
 import java.io.File;
@@ -78,8 +79,7 @@ public class Main {
 //1.1.2 Creation of main class for tests
 
     private static void displayClients(ArrayList<Client> clientsCollection) {
-        clientsCollection.stream()
-                         .forEach(System.out::println);
+        clientsCollection.stream().forEach(System.out::println);
     }
 
     private static ArrayList<Client> generateClient() {
@@ -118,7 +118,7 @@ public class Main {
     public static void displayMapAccounts(Map<Integer, Account> map) {
         map.values()
                 .stream()
-                .sorted((a1, a2) -> Double.compare(a1.getBalance(), a2.getBalance()))
+                .sorted(Comparator.comparingDouble(Account::getBalance))
                 .forEach(System.out::println);
     }
 
@@ -145,9 +145,7 @@ public class Main {
 // 1.3.5 Updating accounts
 
     public static void applyFlows(ArrayList<Flow> flowsCollection, Map<Integer, Account> accountsCollection) {
-        flowsCollection.forEach(f -> {
-            accountsCollection.values().forEach(c -> c.applyFlows(f));
-        });
+        flowsCollection.forEach(f -> accountsCollection.values().forEach(c -> c.applyFlows(f)));
 
         accountsCollection.values().stream()
                 .filter(c -> c.getBalance() < 0)

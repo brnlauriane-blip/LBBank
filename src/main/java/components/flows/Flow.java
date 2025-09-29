@@ -10,11 +10,11 @@ import java.time.LocalDate;
 public abstract class Flow {
 
     private String comment;
-    private int idTransaction;
+    private final int idTransaction;
     private double amount;
     private int targetAccountNumber;
     private boolean effect;
-    private LocalDate dateOfFlow;
+    private final LocalDate dateOfFlow;
     private static int idCounter = 1;
 
     public Flow (String comment,double amount, int targetAccountNumber) {
@@ -65,8 +65,7 @@ public abstract class Flow {
 
         String statusText = effect ? "Done" : "Pending";
 
-        if (this instanceof Transfer) {
-            Transfer t = (Transfer) this;
+        if (this instanceof Transfer t) {
             return "Transfer transaction id #" + idTransaction +
                     " - Amount: " + amount + "€" +
                     " from account #" + t.getIssuerAccountNumber() +

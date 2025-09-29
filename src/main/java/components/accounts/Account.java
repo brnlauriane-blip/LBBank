@@ -25,20 +25,6 @@ public abstract class Account {
         this.accountNumber = accountCounter++;
     }
 
-//2.2 XML file of account
-
-    public Account(String label, Client client, int accountNumber) {
-        if(client == null) throw new IllegalArgumentException("Client cannot be null");
-        this.label = label;
-        this.balance = 0.0;
-        this.client = client;
-        this.accountNumber = accountNumber;
-
-        if(accountNumber >= accountCounter) {
-            accountCounter = accountNumber + 1;
-        }
-    }
-
 // 1.2.1 Creation of Account class
 
     public String getLabel() {
@@ -80,8 +66,7 @@ public abstract class Account {
             this.balance += flowsCollection.getAmount();
         } else if (flowsCollection instanceof Debit && this.accountNumber == flowsCollection.getTargetAccountNumber()) {
             this.balance -= flowsCollection.getAmount();
-        } else if (flowsCollection instanceof Transfer) {
-            Transfer t = (Transfer) flowsCollection;
+        } else if (flowsCollection instanceof Transfer t) {
             if (this.accountNumber == t.getTargetAccountNumber()) {
                 this.balance += t.getAmount();
             } else if (this.accountNumber == t.getIssuerAccountNumber()) {
