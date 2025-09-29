@@ -78,7 +78,8 @@ public class Main {
 //1.1.2 Creation of main class for tests
 
     private static void displayClients(ArrayList<Client> clientsCollection) {
-        clientsCollection.stream().forEach(System.out::println);
+        clientsCollection.stream()
+                         .forEach(System.out::println);
     }
 
     private static ArrayList<Client> generateClient() {
@@ -88,7 +89,6 @@ public class Main {
         }
         return clientsCollection;
     }
-
 
 //1.2.3 Creation of table account
 
@@ -100,7 +100,6 @@ public class Main {
         }
         return accountsCollection;
     }
-
 
     private static void displayAccount(ArrayList<Account> accountsCollection) {
         accountsCollection.stream().forEach(System.out::println);
@@ -123,7 +122,7 @@ public class Main {
                 .forEach(System.out::println);
     }
 
-    // 1.3.4 Creation of the flow array
+// 1.3.4 Creation of the flow array
     private static ArrayList<Flow> generateFlow(ArrayList<Account> accountsCollection) {
         ArrayList<Flow> flowsCollection = new ArrayList<>();
 
@@ -185,43 +184,8 @@ public class Main {
         return flowsCollection;
     }
 
-    //2.2 XML file of account
-    public static ArrayList<Account> loadAccountsFromXml(String accounts) throws Exception {
-        XmlMapper xmlMapper = new XmlMapper();
-        String xml = new String(Files.readAllBytes(Paths.get(accounts)));
+//2.2 XML file of account
 
-        JsonNode root = xmlMapper.readTree(xml);
-        ArrayList<Account> accountsCollection = new ArrayList<>();
-
-        for (JsonNode node : root.withArray("account")) {
-            JsonNode clientNode = node.get("client");
-            if (clientNode == null) throw new RuntimeException("Client is missing in XML for account");
-
-            int clientNumber = clientNode.get("clientNumber").asInt();
-            String lastName = clientNode.get("lastName").asText();
-            String firstName = clientNode.get("firstName").asText();
-
-            Client client = new Client(lastName, firstName, clientNumber);
-
-            double balance = 0.0;
-            int accountNumber = node.get("accountNumber").asInt();
-            String type = node.get("type").asText().trim();
-            Account acc;
-
-            if (type.equals("CurrentAccount")) {
-                acc = new CurrentAccount(client);
-            } else if (type.equals("SavingsAccount")) {
-                acc = new SavingsAccount(client);
-            } else {
-                throw new RuntimeException("Unknown account type: " + type);
-            }
-
-            acc.setAccountNumber(accountNumber);
-            acc.setBalance(balance);
-            accountsCollection.add(acc);
-        }
-        return accountsCollection;
-    }
     public static void loadClientsFromXml(String xmlFilePath, Map<Integer, Account> mapAccount) throws Exception {
         XmlMapper xmlMapper = new XmlMapper();
         String xml = new String(Files.readAllBytes(Paths.get(xmlFilePath)));

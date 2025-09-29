@@ -25,6 +25,8 @@ public abstract class Account {
         this.accountNumber = accountCounter++;
     }
 
+//2.2 XML file of account
+
     public Account(String label, Client client, int accountNumber) {
         if(client == null) throw new IllegalArgumentException("Client cannot be null");
         this.label = label;
@@ -36,6 +38,8 @@ public abstract class Account {
             accountCounter = accountNumber + 1;
         }
     }
+
+// 1.2.1 Creation of Account class
 
     public String getLabel() {
         return label;
@@ -62,19 +66,12 @@ public abstract class Account {
         this.client = client;
     }
 
-    public String getAccountType() {
-        return this instanceof CurrentAccount ? "Current Account" : "Savings Account";
-    }
-
     @Override
     public String toString() {
         String clientStr = (client != null) ? client.toString() : "Unknown client";
         return clientStr + ", account #" + accountNumber + " (" + getAccountType() + ") - Balance: " +
                 String.format("%.2f", balance) + " €";
     }
-
-
-
 
 //1.3.5 Updating accounts
 
@@ -98,4 +95,9 @@ public abstract class Account {
         return accountCounter;
     }
 
+//2.2 XML file of account
+
+    public String getAccountType() {
+        return this instanceof CurrentAccount ? "Current Account" : "Savings Account";
+    }
 }

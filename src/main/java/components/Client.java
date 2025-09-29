@@ -16,16 +16,19 @@ public class Client {
         this.clientNumber = assignmentNumber;
     }
 
+//2.2 XML file of account
+
     public Client(String lastName, String firstName, int clientNumber) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.clientNumber = clientNumber;
 
-        // Mise à jour de assignmentNumber si nécessaire
         if (clientNumber > assignmentNumber) {
             assignmentNumber = clientNumber;
         }
     }
+
+//1.1.1 Creation of the client class
 
     public String getLastName() {
         return lastName;

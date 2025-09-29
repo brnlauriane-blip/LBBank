@@ -57,6 +57,9 @@ public abstract class Flow {
         return dateOfFlow;
     }
 
+
+//1.3.4 Creation of the flow array
+
     @Override
     public String toString() {
 
@@ -86,5 +89,4 @@ public abstract class Flow {
                     " - Completed: " + statusText;
         }
     }
-
 }
