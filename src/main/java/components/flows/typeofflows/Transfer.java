@@ -1,8 +1,8 @@
 package components.flows.typeofflows;
 
-// 1.3.3 Creation of the Transfer, (Credit, Debit) classs
-
 import components.flows.Flow;
+
+// 1.3.3 Creation of the Transfer, (Credit, Debit) classes
 
 public class Transfer extends Flow {
 

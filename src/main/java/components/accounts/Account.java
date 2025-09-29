@@ -1,13 +1,13 @@
 package components.accounts;
 
-// 1.2.1 Creation of Account class
-
 import components.*;
 import components.accounts.types.CurrentAccount;
 import components.flows.typeofflows.Credit;
 import components.flows.typeofflows.Debit;
 import components.flows.Flow;
 import components.flows.typeofflows.Transfer;
+
+// 1.2.1 Creation of Account class
 
 public abstract class Account {
 
