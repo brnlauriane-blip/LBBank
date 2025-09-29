@@ -1,0 +1,50 @@
+package components;
+
+//1.1.1 Creation of the client class
+
+public class Client {
+
+    private String lastName;
+    private String firstName;
+    private final int clientNumber;
+    private static int assignmentNumber = 0;
+
+    public Client (String lastName, String firstName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        assignmentNumber++;
+        this.clientNumber = assignmentNumber;
+    }
+
+    public Client(String lastName, String firstName, int clientNumber) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.clientNumber = clientNumber;
+
+        // Mise à jour de assignmentNumber si nécessaire
+        if (clientNumber > assignmentNumber) {
+            assignmentNumber = clientNumber;
+        }
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    public String getFirstName() {
+        return firstName;
+    }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    public int getClientNumber() {
+        return clientNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Client #" + clientNumber + ", " + lastName + " " + firstName;
+    }
+}
