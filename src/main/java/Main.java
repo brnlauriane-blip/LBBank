@@ -65,6 +65,7 @@ public class Main {
 
         System.out.println("AFTER APPLICATION (JSON FLOW)");
         applyFlows(flowsFromJson, mapAccount);
+        checkNegativeBalances(mapAccount);
         displayMapAccounts(mapAccount);
         System.out.println();
 
@@ -72,8 +73,10 @@ public class Main {
 
         System.out.println("ASSOCIATION OF CLIENT NUMBERS WITH NAMES FROM XML FILE");
         loadClientsFromXml("resources/accounts.xml", mapAccount);
+        checkNegativeBalances(mapAccount);
         displayMapAccounts(mapAccount);
         System.out.println();
+
     }
 
 //1.1.2 Creation of main class for tests
@@ -146,11 +149,14 @@ public class Main {
 
     public static void applyFlows(ArrayList<Flow> flowsCollection, Map<Integer, Account> accountsCollection) {
         flowsCollection.forEach(f -> accountsCollection.values().forEach(c -> c.applyFlows(f)));
+    }
 
+    public static void checkNegativeBalances(Map<Integer, Account> accountsCollection) {
         accountsCollection.values().stream()
                 .filter(c -> c.getBalance() < 0)
                 .forEach(c -> System.out.println("Warning: negative balance " + c));
     }
+
 
 // 2.1 JSON file of flows
 
